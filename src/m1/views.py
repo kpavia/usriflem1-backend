@@ -7,6 +7,11 @@ def index(request):
     context = {
         'title': 'US Rifle M1.com'
     }
+    if request.headers.get('Host') in ['localhost', 'localhost:8000', '127.0.0.1', '127.0.0.1:8000']:
+        display_ga = False
+    else:
+        display_ga = True
+    context['display_ga'] = display_ga
     if request.method == 'POST':
         form = RifleDateForm(request.POST)
         if form.is_valid():

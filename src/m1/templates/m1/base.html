@@ -13,6 +13,17 @@
     
     <link rel="stylesheet" type="text/css" href="{% static 'm1/main.css' %}">
     <title>{{ title }}</title>
+    {% if display_ga %}
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-LP86VQPV8N"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-LP86VQPV8N');
+      </script>
+    {% endif %}
   </head>
   <body>
     <div class="container-fluid">
