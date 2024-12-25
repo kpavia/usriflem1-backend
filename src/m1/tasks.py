@@ -10,5 +10,5 @@ def rifle_data(data):
         ending_serial__gte=sn
     ).first()
     if receiver:
-        return {'month': receiver.month, 'year': receiver.year, 'sn': sn}
+        return {'month': receiver.month, 'year': receiver.year, 'sn': sn, 'maker': receiver.maker}
     return {}

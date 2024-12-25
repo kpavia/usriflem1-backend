@@ -18,7 +18,12 @@
         {{ form|crispy }}
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    {% if rifle_year %}
-        <p>Rifle SN {{ rifle_sn }} was manufactured in {{rifle_month }} {{rifle_year }}.</p>
+    {% if rifle %}
+        <h4 class="mt-5">Your Rifle's Production Data</h4>
+        <ul>
+            {% for k, v in rifle.items %}
+                <li><b>{{ k }}:</b> {{ v }}</li>
+            {% endfor %}
+        </ul>
     {% endif %}
 {% endblock date %}

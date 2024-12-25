@@ -11,9 +11,12 @@ def index(request):
         form = RifleDateForm(request.POST)
         if form.is_valid():
             rifle = rifle_data(form.cleaned_data)
-            context['rifle_month'] = rifle.get('month')
-            context['rifle_year'] = rifle.get('year')
-            context['rifle_sn'] = rifle.get('sn')
+            context['rifle'] = {
+                'Maker': 'Springfield Armory' if rifle.get('maker') == 'SA' else 'Winchester Repeating Arms',
+                'Serial Number': rifle.get('sn'),
+                'Month': rifle.get('month'),
+                'Year': rifle.get('year')
+            }
             form = RifleDateForm()
         else:
             form = RifleDateForm()
