@@ -11,19 +11,25 @@
 {% endblock content %}
 
 {% block date %}
-    <h1>M1 Garand WW2 Production Data</h1>
-    <p>Input your serial number and select the manufacturer to see the month and year your rifle was produced.</p>
-    <form method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    {% if rifle %}
-        <h4 class="mt-5">Your Rifle's Production Data</h4>
-        <ul>
-            {% for k, v in rifle.items %}
-                <li><b>{{ k }}:</b> {{ v }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <div class="row mb-5">
+        <h1>M1 Garand WW2 Production Data</h1>
+        <p>Input your serial number and select the manufacturer to see the month and year your rifle was produced.</p>
+        <div class="col">
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="col">
+            {% if rifle %}
+                <h4 class="mt-5">Your Rifle's Production Data</h4>
+                <ul>
+                    {% for k, v in rifle.items %}
+                        <li><b>{{ k }}:</b> {{ v }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
 {% endblock date %}
