@@ -25,3 +25,6 @@ class OpRod(models.Model):
     drawing_number = models.CharField(max_length=20)
     starting_serial = models.PositiveIntegerField()
     ending_serial = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f'{self.maker} {self.drawing_number}'
