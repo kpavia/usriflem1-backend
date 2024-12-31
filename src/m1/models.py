@@ -16,3 +16,12 @@ class Receiver(models.Model):
         return f'{self.maker}, {self.month} {self.year}'
 
 
+class OpRod(models.Model):
+    MAKER_CHOICES = {
+        'SA': 'Springfield Armory',
+        'W': 'Winchester Repeating Arms',
+    }
+    maker = models.CharField(max_length=32, choices=MAKER_CHOICES)
+    drawing_number = models.CharField(max_length=20)
+    starting_serial = models.PositiveIntegerField()
+    ending_serial = models.PositiveIntegerField()
