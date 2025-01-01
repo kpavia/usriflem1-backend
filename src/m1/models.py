@@ -23,10 +23,11 @@ class OpRod(models.Model):
     }
     maker = models.CharField(max_length=32, choices=MAKER_CHOICES)
     drawing_number = models.CharField(max_length=20)
-    starting_serial = models.PositiveIntegerField(null=True)
-    ending_serial = models.PositiveIntegerField(null=True)
-    year_range_start = models.IntegerField(null=True)
-    year_range_end = models.IntegerField(null=True)
+    starting_serial = models.PositiveIntegerField(null=True, blank=True)
+    ending_serial = models.PositiveIntegerField(null=True, blank=True)
+    year_range_start = models.IntegerField(null=True, blank=True)
+    year_range_end = models.IntegerField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.maker} {self.drawing_number}'
