@@ -28,6 +28,7 @@ class OpRod(models.Model):
     year_range_start = models.IntegerField(null=True, blank=True)
     year_range_end = models.IntegerField(null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
+    receivers = models.ManyToManyField(Receiver)
 
     def __str__(self):
         return f'{self.maker} {self.drawing_number}'
