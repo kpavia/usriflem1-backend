@@ -9,7 +9,8 @@ def get_op_rod(sn, maker):
         if sn >= rod.starting_serial and sn <= rod.ending_serial:
             possible_op_rods.append({
                 'drawing_number': rod.drawing_number,
-                'sn_range': f'{rod.starting_serial} - {rod.ending_serial}'
+                'sn_range': f'{rod.starting_serial} - {rod.ending_serial}',
+                'notes': rod.notes
             })
     return possible_op_rods
 
@@ -23,5 +24,7 @@ def rifle_data(data):
         ending_serial__gte=sn
     ).first()
     if receiver:
-        return {'month': receiver.month, 'year': receiver.year, 'sn': sn, 'maker': receiver.maker}
+        rifle = {'month': receiver.month, 'year': receiver.year, 'sn': sn, 'maker': receiver.maker}
+        rifle['op_rods'] = get_op_rod(sn, maker)
+        return rifle
     return {}

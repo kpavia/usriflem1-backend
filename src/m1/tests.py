@@ -181,4 +181,70 @@ class CustomUnitTests:
                 raise AssertionError
             else:
                 print('Test 2 passed')
+        
+        # test 3
+        rod_3 = get_op_rod(self.test_sn3, 'SA')
+        possible_rods = [
+            'D35382 3SA',
+        ]
+        assert isinstance(rod_3, list)
+        for rod in rod_3:
+            try:
+                assert rod.get('drawing_number', '') in possible_rods
+            except AssertionError:
+                print(f'S/N: {self.test_sn3}')
+                print(rod)
+                print(f'{rod.get("drawing_number", "")} not in possible rods')
+                raise AssertionError
+            else:
+                print('Test 3 passed')
+        
+        # test 4
+        rod_4 = get_op_rod(self.test_sn4, 'SA')
+        possible_rods = [
+            'D35382 3SA',
+        ]
+        assert isinstance(rod_4, list)
+        for rod in rod_4:
+            try:
+                assert rod.get('drawing_number', '') in possible_rods
+            except AssertionError:
+                print(f'S/N: {self.test_sn4}')
+                print(f'{rod.get("drawing_number", "")} not in possible rods')
+                raise AssertionError
+            else:
+                print('Test 4 passed')
+        
+        # test 5
+        rod_5 = get_op_rod(self.test_sn5, 'SA')
+        possible_rods = [
+            'D35382 6 SA',
+        ]
+        assert isinstance(rod_2, list)
+        for rod in rod_5:
+            try:
+                assert rod.get('drawing_number', '') in possible_rods
+            except AssertionError:
+                print(f'S/N: {self.test_sn5}')
+                print(f'{rod.get("drawing_number", "")} not in possible rods')
+                raise AssertionError
+            else:
+                print('Test 5 passed')
+        
+        # test 6
+        rod_6 = get_op_rod(self.test_sn6, 'SA')
+        possible_rods = [
+            'D35382 9 SA',
+            'D35382 9SA'
+        ]
+        assert isinstance(rod_6, list)
+        for rod in rod_6:
+            try:
+                assert rod.get('drawing_number', '') in possible_rods
+            except AssertionError:
+                print(f'S/N: {self.test_sn6}')
+                print(f'{rod.get("drawing_number", "")} not in possible rods')
+                raise AssertionError
+            else:
+                print('Test 6 passed')
  

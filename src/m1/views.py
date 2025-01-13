@@ -20,7 +20,8 @@ def index(request):
                 'Maker': 'Springfield Armory' if rifle.get('maker') == 'SA' else 'Winchester Repeating Arms',
                 'Serial Number': rifle.get('sn'),
                 'Month': rifle.get('month'),
-                'Year': rifle.get('year')
+                'Year': rifle.get('year'),
+                'Possible Op Rods': [f'{r["drawing_number"]} with a s/n range of {r["notes"]}' for r in rifle.get('op_rods', [])]
             }
             form = RifleDateForm()
         else:

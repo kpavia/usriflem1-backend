@@ -13,7 +13,7 @@
 {% block date %}
     <div class="row mb-5">
         <h1>M1 Garand WW2 Production Data</h1>
-        <p>Input your serial number and select the manufacturer to see the month and year your rifle was produced.</p>
+        <p>Input your serial number and select the manufacturer to see the month and year your rifle was produced and the correct drawing numbers of associated parts.</p>
         <div class="col">
             <form method="post">
                 {% csrf_token %}
@@ -26,7 +26,19 @@
                 <h4 class="mt-5">Your Rifle's Production Data</h4>
                 <ul>
                     {% for k, v in rifle.items %}
+                        
+                        {% if k == "Possible Op Rods" %}
+                            <li>
+                                <b>{{ k }}:</b>
+                                {% for rod in v %}
+                                    <ul>
+                                        <li>{{ rod }}</li>
+                                    </ul>
+                                {% endfor %}
+                            </li>
+                        {% else %}
                         <li><b>{{ k }}:</b> {{ v }}</li>
+                        {% endif %}
                     {% endfor %}
                 </ul>
             {% endif %}
