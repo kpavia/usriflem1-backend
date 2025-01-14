@@ -36,6 +36,15 @@
                                     </ul>
                                 {% endfor %}
                             </li>
+                        {% elif k == 'Possible Bolts' %}
+                            <li>
+                                <b>{{ k }}:</b>
+                                {% for rod in v %}
+                                    <ul>
+                                        <li>{{ rod }}</li>
+                                    </ul>
+                                {% endfor %}
+                            </li>
                         {% else %}
                         <li><b>{{ k }}:</b> {{ v }}</li>
                         {% endif %}

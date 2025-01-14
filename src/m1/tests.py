@@ -3,7 +3,11 @@ from m1.models import (
     Receiver,
     OpRod
 )
-from m1.tasks import rifle_data, get_op_rod
+from m1.tasks import (
+    rifle_data,
+    get_op_rod,
+    get_bolt
+)
 
 
 class CustomUnitTests:
@@ -21,6 +25,80 @@ class CustomUnitTests:
             starting_serial__isnull=False,
             ending_serial__isnull=False
         )
+    
+
+    def test_bolt_data(self):
+        # test 1
+        bolts = get_bolt(self.test_sn1, 'SA')
+        try:
+            assert isinstance(bolts, list)
+            assert isinstance(bolts[0], dict)
+        except AssertionError as ae:
+            print('Failed Bolt test 1 type test')
+            raise ae
+        expected_drawing_number = 'D28287-12SA'
+        try:
+            assert expected_drawing_number == bolts[0].get('drawing_number')
+        except AssertionError as ae:
+            print('Failed bolt test 1 drawing number comparison')
+        else:
+            print('Passed bolt test 1')
+        
+        # test 2
+        bolts = get_bolt(self.test_sn2, 'SA')
+        bolt = bolts[0]
+        expected_drawing_number = 'D28287'
+        try:
+            assert expected_drawing_number == bolt.get('drawing_number')
+        except AssertionError as ae:
+            print('Failed bolt test 2')
+        else:
+            print('Passed bolt test 2')
+        
+        # test 3
+        bolts = get_bolt(self.test_sn3, 'SA')
+        bolt = bolts[0]
+        expected_drawing_number = 'D28287-2SA'
+        try:
+            assert expected_drawing_number == bolt.get('drawing_number')
+        except AssertionError as ae:
+            print('Failed bolt test 3')
+        else:
+            print('Passed bolt test 3')
+        
+        # test 4
+        bolts = get_bolt(self.test_sn4, 'SA')
+        bolt = bolts[0]
+        expected_drawing_number = 'D28287-12SA'
+        try:
+            assert expected_drawing_number == bolt.get('drawing_number')
+        except AssertionError as ae:
+            print('Failed bolt test 4')
+        else:
+            print('Passed bolt test 4')
+        
+        # test 5
+        bolts = get_bolt(3251111, 'SA')
+        bolt = bolts[0]
+        expected_drawing_number = 'D28287-17SA'
+        try:
+            assert expected_drawing_number == bolt.get('drawing_number')
+        except AssertionError as ae:
+            print('Failed bolt test 5')
+        else:
+            print('Passed bolt test 5')
+        
+        # test 6
+        bolts = get_bolt(self.test_sn6, 'SA')
+        bolt = bolts[0]
+        expected_drawing_number = 'D28287-19SA'
+        try:
+            assert expected_drawing_number == bolt.get('drawing_number')
+        except AssertionError as ae:
+            print('Failed bolt test 6')
+        else:
+            print('Passed bolt test 6')
+
     
     def test_receiver_date(self):
         # test 1

@@ -21,7 +21,8 @@ def index(request):
                 'Serial Number': rifle.get('sn'),
                 'Month': rifle.get('month'),
                 'Year': rifle.get('year'),
-                'Possible Op Rods': [f'{r["drawing_number"]} with a s/n range of {r["notes"]}' for r in rifle.get('op_rods', [])]
+                'Possible Op Rods': [f'{r["drawing_number"]} with a s/n range of {r["notes"]}' for r in rifle.get('op_rods', [])],
+                'Possible Bolts': [f'{r["drawing_number"]} with a s/n range of {r["sn_range"]}' for r in rifle.get('bolts')]
             }
             form = RifleDateForm()
         else:

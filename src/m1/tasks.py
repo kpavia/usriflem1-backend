@@ -1,4 +1,6 @@
-from m1.models import Receiver, OpRod
+from m1.models import (
+    Receiver, OpRod, Bolt
+)
 
 
 def get_op_rod(sn, maker):
@@ -15,6 +17,18 @@ def get_op_rod(sn, maker):
     return possible_op_rods
 
 
+def get_bolt(sn, maker):
+    bolts = Bolt.objects.filter(maker=maker)
+    possible_bolts = list()
+    for bolt in bolts:
+        if sn >= bolt.starting_serial and sn <= bolt.ending_serial:
+            possible_bolts.append({
+                'drawing_number': bolt.drawing_number,
+                'sn_range': f'{bolt.starting_serial} - {bolt.ending_serial}'
+            })
+    return possible_bolts
+
+
 def rifle_data(data):
     sn = int(data.get('serial_number'))
     maker = data.get('maker')
@@ -26,5 +40,6 @@ def rifle_data(data):
     if receiver:
         rifle = {'month': receiver.month, 'year': receiver.year, 'sn': sn, 'maker': receiver.maker}
         rifle['op_rods'] = get_op_rod(sn, maker)
+        rifle['bolts'] = get_bolt(sn, maker)
         return rifle
     return {}
