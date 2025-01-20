@@ -49,7 +49,7 @@ class Bolt(models.Model):
         return f'{self.maker} bolt {self.drawing_number}'
 
 
-class BulletGuid(models.Model):
+class BulletGuide(models.Model):
     MAKER_CHOICES = {
         'SA': 'Springfield Armory',
         'W': 'Winchester Repeating Arms',
@@ -60,6 +60,7 @@ class BulletGuid(models.Model):
     drawing_number = models.CharField(max_length=30)
     starting_serial = models.PositiveIntegerField(null=True, blank=True)
     ending_serial = models.PositiveIntegerField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.maker} bullet guid {self.drawing_number}'

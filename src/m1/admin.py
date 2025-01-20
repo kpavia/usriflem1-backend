@@ -3,7 +3,7 @@ from m1.models import (
     Receiver,
     OpRod,
     Bolt,
-    BulletGuid,
+    BulletGuide,
     TriggerHousing,
     TriggerGuard,
     Trigger,
@@ -15,7 +15,7 @@ from m1.models import (
 admin.site.register(Receiver)
 admin.site.register(OpRod)
 admin.site.register(Bolt)
-admin.site.register(BulletGuid)
+admin.site.register(BulletGuide)
 admin.site.register(TriggerHousing)
 admin.site.register(TriggerGuard)
 admin.site.register(Trigger)
