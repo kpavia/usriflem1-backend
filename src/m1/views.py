@@ -15,7 +15,12 @@ def index(request):
     if request.method == 'POST':
         form = RifleDateForm(request.POST)
         if form.is_valid():
-            rifle = rifle_data(form.cleaned_data)
+            try:
+                rifle = rifle_data(form.cleaned_data)
+            except Exception as e:
+                print(e)
+            print('BOLTS')
+            print(rifle.get('bolts'))
             context['rifle'] = {
                 'Maker': 'Springfield Armory' if rifle.get('maker') == 'SA' else 'Winchester Repeating Arms',
                 'Serial Number': rifle.get('sn'),
