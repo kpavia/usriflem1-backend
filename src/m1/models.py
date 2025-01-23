@@ -63,7 +63,7 @@ class BulletGuide(models.Model):
     notes = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return f'{self.maker} bullet guid {self.drawing_number}'
+        return f'{self.maker} bullet guide {self.drawing_number}'
 
 
 class TriggerHousing(models.Model):

@@ -45,6 +45,15 @@
                                     </ul>
                                 {% endfor %}
                             </li>
+                        {% elif k == 'Possible Bullet Guides' %}
+                            <li>
+                                <b>{{ k }}:</b>
+                                {% for guide in v %}
+                                    <ul>
+                                        <li>{{ guide }}</li>
+                                    </ul>
+                                {% endfor %}
+                            </li>
                         {% else %}
                         <li><b>{{ k }}:</b> {{ v }}</li>
                         {% endif %}

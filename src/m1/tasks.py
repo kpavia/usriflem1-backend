@@ -1,5 +1,7 @@
 from m1.models import (
-    Receiver, OpRod, Bolt
+    Receiver, OpRod, Bolt, BulletGuide,
+    TriggerHousing, TriggerGuard, Trigger,
+    Safety, Hammer
 )
 
 
@@ -29,6 +31,19 @@ def get_bolt(sn, maker):
     return possible_bolts
 
 
+def get_bullet_guide(sn, maker):
+    b_guides = BulletGuide.objects.filter(maker=maker)
+    possible_guides = list()
+    for b in b_guides:
+        if sn >=  b.starting_serial and sn <= b.ending_serial:
+            possible_guides.append({
+                'drawing_number': b.drawing_number,
+                'sn_range': f'{b.starting_serial} - {b.ending_serial}',
+                'notes': b.notes
+            })
+    return possible_guides
+
+
 def rifle_data(data):
     sn = int(data.get('serial_number'))
     maker = data.get('maker')
@@ -41,5 +56,6 @@ def rifle_data(data):
         rifle = {'month': receiver.month, 'year': receiver.year, 'sn': sn, 'maker': receiver.maker}
         rifle['op_rods'] = get_op_rod(sn, maker)
         rifle['bolts'] = get_bolt(sn, maker)
+        rifle['bullet_guides'] = get_bullet_guide(sn, maker)
         return rifle
     return {}

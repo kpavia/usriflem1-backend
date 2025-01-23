@@ -19,15 +19,14 @@ def index(request):
                 rifle = rifle_data(form.cleaned_data)
             except Exception as e:
                 print(e)
-            print('BOLTS')
-            print(rifle.get('bolts'))
             context['rifle'] = {
                 'Maker': 'Springfield Armory' if rifle.get('maker') == 'SA' else 'Winchester Repeating Arms',
                 'Serial Number': rifle.get('sn'),
                 'Month': rifle.get('month'),
                 'Year': rifle.get('year'),
                 'Possible Op Rods': [f'{r["drawing_number"]} with a s/n range of {r["notes"]}' for r in rifle.get('op_rods', [])],
-                'Possible Bolts': [f'{r["drawing_number"]} with a s/n range of {r["sn_range"]}' for r in rifle.get('bolts')]
+                'Possible Bolts': [f'{r["drawing_number"]} with a s/n range of {r["sn_range"]}' for r in rifle.get('bolts')],
+                'Possible Bullet Guides': [f'{r["drawing_number"]} with a s/n range of {r["sn_range"]}. {r["notes"]}' for r in rifle.get('bullet_guides')]
             }
             form = RifleDateForm()
         else:
