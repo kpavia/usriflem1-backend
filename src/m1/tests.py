@@ -19,6 +19,8 @@ class CustomUnitTests:
         self.test_sn4 = 566924
         self.test_sn5 = 2154846
         self.test_sn6 = 3413278
+
+        self.known_problem_sn = 105460
         self.receivers = Receiver.objects.all()
         self.op_rods = OpRod.objects.filter(
             maker='SA',
@@ -98,6 +100,18 @@ class CustomUnitTests:
             print('Failed bolt test 6')
         else:
             print('Passed bolt test 6')
+        
+
+        # test 7
+        bolts = get_bolt(self.known_problem_sn, 'SA')
+        bolt = bolts[0]
+        expected_drawing_number = 'D28287-2SA'
+        try:
+            assert expected_drawing_number == bolt.get('drawing_number')
+        except AssertionError as ae:
+            print('Failed bolt test 7, known problem s/n')
+        else:
+            print('Passed bolt test 7, known problem s/n')
 
     
     def test_receiver_date(self):
@@ -222,6 +236,26 @@ class CustomUnitTests:
             print('Negative tests for test 6 passed')
         else:
             raise AssertionError('Negative tests 6 failed')
+        
+        # test 7
+        receiver = rifle_data({'serial_number': self.known_problem_sn, 'maker': 'SA'})
+        try:
+            assert isinstance(receiver, dict)
+            assert receiver.get('month', '') == 'December'
+            assert receiver.get('year', 0) == 1940
+        except AssertionError as ae:
+            raise ae
+        else:
+            print('Unit tests 7 passed')
+
+        # negative test
+        try:
+            assert receiver.get('month', '') == 'April'
+            assert receiver.get('year', 0) == 1937
+        except AssertionError as ae:
+            print('Negative tests for test 7 passed')
+        else:
+            raise AssertionError('Negative tests 7 failed')
 
 
     def test_op_rod(self):

@@ -59,6 +59,10 @@
                         {% endif %}
                     {% endfor %}
                 </ul>
+            {% elif not rifle and error %}
+                <p>There was a problem and your serial number couldn't be found.</p>
+            {% else %}
+                <p>Data will appear here.</p>
             {% endif %}
         </div>
     </div>

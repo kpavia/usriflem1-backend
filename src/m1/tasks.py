@@ -22,13 +22,16 @@ def get_op_rod(sn, maker):
 def get_bolt(sn, maker):
     bolts = Bolt.objects.filter(maker=maker)
     possible_bolts = list()
-    for bolt in bolts:
-        if sn >= bolt.starting_serial and sn <= bolt.ending_serial:
-            possible_bolts.append({
-                'drawing_number': bolt.drawing_number,
-                'sn_range': f'{bolt.starting_serial} - {bolt.ending_serial}'
-            })
-    return possible_bolts
+    if bolts:
+        for bolt in bolts:
+            if sn >= bolt.starting_serial and sn <= bolt.ending_serial:
+                possible_bolts.append({
+                    'drawing_number': bolt.drawing_number,
+                    'sn_range': f'{bolt.starting_serial} - {bolt.ending_serial}'
+                })
+        return possible_bolts
+    
+    return []
 
 
 def get_bullet_guide(sn, maker):
@@ -50,10 +53,12 @@ def get_cartouche(sn, maker):
         starting_serial__lte=sn,
         ending_serial__gte=sn
     ).first()
-    return {
-        'cartouche': stock.cartouche,
-        'notes': stock.notes
-    }
+    if stock:
+        return {
+            'cartouche': stock.cartouche,
+            'notes': stock.notes
+        }
+    return {}
 
 
 def rifle_data(data):
