@@ -1,7 +1,7 @@
 from m1.models import (
     Receiver, OpRod, Bolt, BulletGuide,
     TriggerHousing, TriggerGuard, Trigger,
-    Safety, Hammer
+    Safety, Hammer, Cartouche
 )
 
 
@@ -44,6 +44,18 @@ def get_bullet_guide(sn, maker):
     return possible_guides
 
 
+def get_cartouche(sn, maker):
+    stock = Cartouche.objects.filter(
+        maker=maker,
+        starting_serial__lte=sn,
+        ending_serial__gte=sn
+    ).first()
+    return {
+        'cartouche': stock.cartouche,
+        'notes': stock.notes
+    }
+
+
 def rifle_data(data):
     sn = int(data.get('serial_number'))
     maker = data.get('maker')
@@ -57,5 +69,6 @@ def rifle_data(data):
         rifle['op_rods'] = get_op_rod(sn, maker)
         rifle['bolts'] = get_bolt(sn, maker)
         rifle['bullet_guides'] = get_bullet_guide(sn, maker)
+        rifle['stock'] = get_cartouche(sn, maker)
         return rifle
     return {}
