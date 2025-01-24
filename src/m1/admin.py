@@ -9,7 +9,8 @@ from m1.models import (
     Trigger,
     Safety,
     Hammer,
-    Cartouche
+    Cartouche,
+    Srs
 )
 
 
@@ -23,3 +24,4 @@ admin.site.register(Trigger)
 admin.site.register(Safety)
 admin.site.register(Hammer)
 admin.site.register(Cartouche)
+admin.site.register(Srs)
