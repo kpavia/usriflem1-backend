@@ -110,6 +110,7 @@ class TriggerGuard(models.Model):
     drawing_number = models.CharField(max_length=30)
     starting_serial = models.PositiveIntegerField(null=True, blank=True)
     ending_serial = models.PositiveIntegerField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.maker} trigger guard {self.drawing_number}'
@@ -126,6 +127,7 @@ class Trigger(models.Model):
     drawing_number = models.CharField(max_length=30)
     starting_serial = models.PositiveIntegerField(null=True, blank=True)
     ending_serial = models.PositiveIntegerField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.maker} trigger {self.drawing_number}'
@@ -142,6 +144,7 @@ class Safety(models.Model):
     drawing_number = models.CharField(max_length=30)
     starting_serial = models.PositiveIntegerField(null=True, blank=True)
     ending_serial = models.PositiveIntegerField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.maker} safety {self.drawing_number}'
@@ -158,6 +161,7 @@ class Hammer(models.Model):
     drawing_number = models.CharField(max_length=30)
     starting_serial = models.PositiveIntegerField(null=True, blank=True)
     ending_serial = models.PositiveIntegerField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.maker} hammer {self.drawing_number}'
