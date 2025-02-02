@@ -61,6 +61,80 @@ def get_cartouche(sn, maker):
     return {}
 
 
+def get_trigger_housing(sn, maker):
+    housings = TriggerHousing.objects.filter(
+        maker=maker,
+        starting_serial__lte=sn,
+        ending_serial__gte=sn
+    )
+    if housings:
+        return [
+            {
+                'drawing_number': housing.drawing_number,
+                'notes': housing.notes
+            } for housing in housings
+        ]
+    return []
+
+
+def get_trigger_guards(sn, maker):
+    guards = TriggerGuard.objects.filter(
+        maker=maker,
+        starting_serial__lte=sn,
+        ending_serial__gte=sn
+    )
+    if guards:
+        return [
+            {
+                'drawing_number': guard.drawing_number,
+                'notes': guard.notes
+            } for guard in guards
+        ]
+    return []
+
+
+def get_triggers(sn, maker):
+    triggers = Trigger.objects.filter(
+        maker=maker,
+        starting_serial__lte=sn,
+        ending_serial__gte=sn
+    )
+    if triggers:
+        return [{
+            'drawing_number': trigger.drawing_number,
+            'notes': trigger.notes
+        } for trigger in triggers]
+    return []
+
+
+def get_safeties(sn, maker):
+    safeties = Safety.objects.filter(
+        maker=maker,
+        starting_serial__lte=sn,
+        ending_serial__gte=sn
+    )
+    if safeties:
+        return [{
+            'drawing_number': safety.drawing_number,
+            'notes': safety.notes
+        } for safety in safeties]
+    return []
+
+
+def get_hammers(sn, maker):
+    hammers = Hammer.objects.filter(
+        maker=maker,
+        starting_serial__lte=sn,
+        ending_serial__gte=sn
+    )
+    if hammers:
+        return [{
+            'drawing_number': hammer.drawing_number,
+            'notes': hammer.notes
+        } for hammer in hammers]
+    return []
+
+
 def rifle_data(data):
     sn = int(data.get('serial_number'))
     maker = data.get('maker')
@@ -75,5 +149,10 @@ def rifle_data(data):
         rifle['bolts'] = get_bolt(sn, maker)
         rifle['bullet_guides'] = get_bullet_guide(sn, maker)
         rifle['stock'] = get_cartouche(sn, maker)
+        rifle['trigger_housings'] = get_trigger_housing(sn, maker)
+        rifle['trigger_guards'] = get_trigger_guards(sn, maker)
+        rifle['triggers'] = get_triggers(sn, maker)
+        rifle['safeties'] = get_safeties(sn, maker)
+        rifle['hammers'] = get_hammers(sn, maker)
         return rifle
     return {}

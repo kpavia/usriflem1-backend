@@ -41,7 +41,11 @@ def index(request):
                 'Possible Op Rods': [f'{r["drawing_number"]} with a s/n range of {r["notes"]}' for r in rifle.get('op_rods', [])],
                 'Possible Bolts': [f'{r["drawing_number"]} with a s/n range of {r["sn_range"]}' for r in rifle.get('bolts')],
                 'Possible Bullet Guides': [f'{r["drawing_number"]} with a s/n range of {r["sn_range"]}. {r["notes"]}' for r in rifle.get('bullet_guides')],
-                
+                'Possible Trigger Housings': [f'{r["drawing_number"]} {r["notes"]}' for r in rifle.get('trigger_housings')],
+                'Possible Trigger Guards': [f'{r["drawing_number"]}, Notes: {r["notes"]}' for r in rifle.get('trigger_guards')],
+                'Possible Triggers': [f'{r["drawing_number"]}, Notes: {r["notes"]}' for r in rifle.get('triggers')],
+                'Possible Safeties': [f'{r["drawing_number"]}, Notes: {r["notes"]}' for r in rifle.get('safeties')],
+                'Possible Hammers': [f'{r["drawing_number"]}, Notes: {r["notes"]}' for r in rifle.get('hammers')]
             }
             form = RifleDateForm()
         else:

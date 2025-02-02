@@ -14,43 +14,24 @@
     <div class="row mb-5">
         <h1>M1 Garand WW2 Production Data</h1>
         <p>Input your serial number and select the manufacturer to see the month and year your rifle was produced and the correct drawing numbers of associated parts.</p>
-        <div class="col">
+        <div class="col-12 col-md-6">
             <form method="post">
                 {% csrf_token %}
                 {{ form|crispy }}
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
-        <div class="col">
+        <div class="col-12 col-md-6">
             {% if rifle %}
                 <h4 class="mt-5">Your Rifle's Production Data</h4>
                 <ul>
                     {% for k, v in rifle.items %}
-                        
-                        {% if k == "Possible Op Rods" %}
+                        {% if 'Possible' in k %}
                             <li>
                                 <b>{{ k }}:</b>
-                                {% for rod in v %}
+                                {% for part in v %}
                                     <ul>
-                                        <li>{{ rod }}</li>
-                                    </ul>
-                                {% endfor %}
-                            </li>
-                        {% elif k == 'Possible Bolts' %}
-                            <li>
-                                <b>{{ k }}:</b>
-                                {% for rod in v %}
-                                    <ul>
-                                        <li>{{ rod }}</li>
-                                    </ul>
-                                {% endfor %}
-                            </li>
-                        {% elif k == 'Possible Bullet Guides' %}
-                            <li>
-                                <b>{{ k }}:</b>
-                                {% for guide in v %}
-                                    <ul>
-                                        <li>{{ guide }}</li>
+                                        <li>{{ part }}</li>
                                     </ul>
                                 {% endfor %}
                             </li>
