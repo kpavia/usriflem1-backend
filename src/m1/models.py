@@ -1,6 +1,13 @@
 from django.db import models
 
 
+class SRSVolume(models.Model):
+    source = models.CharField(max_length=16)
+
+    def __str__(self):
+        return f'SRS {self.source}'
+
+
 class Srs(models.Model):
     FIREARMS_CHOICES = {
         'M1': 'M1 Garand',
@@ -12,9 +19,10 @@ class Srs(models.Model):
     model = models.CharField(max_length=20, null=True, blank=True)
     date = models.CharField(max_length=6)
     usage = models.CharField(max_length=64)
+    srs_volume = models.ForeignKey(SRSVolume, on_delete=models.DO_NOTHING, null=True)
 
     def __str__(self):
-        return f'{self.firearm} {self.serial_number}'
+        return f'{self.firearm} {self.serial_number}, SRS {self.volume}'
 
 
 class Receiver(models.Model):
