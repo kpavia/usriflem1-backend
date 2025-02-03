@@ -22,7 +22,7 @@ class Srs(models.Model):
     srs_volume = models.ForeignKey(SRSVolume, on_delete=models.DO_NOTHING, null=True)
 
     def __str__(self):
-        return f'{self.firearm} {self.serial_number}, SRS {self.srs_volume}'
+        return f'{self.firearm} {self.serial_number}, {self.srs_volume}'
 
 
 class Receiver(models.Model):
