@@ -10,7 +10,8 @@ from m1.models import (
     Safety,
     Hammer,
     Cartouche,
-    Srs
+    Srs,
+    SRSVolume
 )
 
 
@@ -25,3 +26,4 @@ admin.site.register(Safety)
 admin.site.register(Hammer)
 admin.site.register(Cartouche)
 admin.site.register(Srs)
+admin.site.register(SRSVolume)
