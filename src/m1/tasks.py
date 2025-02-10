@@ -1,7 +1,7 @@
 from m1.models import (
     Receiver, OpRod, Bolt, BulletGuide,
     TriggerHousing, TriggerGuard, Trigger,
-    Safety, Hammer, Cartouche
+    Safety, Hammer, Cartouche, Follower
 )
 
 
@@ -135,6 +135,20 @@ def get_hammers(sn, maker):
     return []
 
 
+def get_followers(sn, maker):
+    followers = Follower.objects.filter(
+        maker=maker,
+        starting_serial__lte=sn,
+        ending_serial__gte=sn
+    )
+    if followers:
+        return [{
+            'revision_number': follower.drawing_number,
+            'notes': follower.notes
+        } for follower in followers]
+    return []
+
+
 def rifle_data(data):
     sn = int(data.get('serial_number'))
     maker = data.get('maker')
@@ -154,5 +168,6 @@ def rifle_data(data):
         rifle['triggers'] = get_triggers(sn, maker)
         rifle['safeties'] = get_safeties(sn, maker)
         rifle['hammers'] = get_hammers(sn, maker)
+        rifle['followers'] = get_followers(sn, maker)
         return rifle
     return {}

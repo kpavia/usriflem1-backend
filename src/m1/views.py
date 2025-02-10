@@ -45,7 +45,8 @@ def index(request):
                 'Possible Trigger Guards': [f'{r["drawing_number"]}, Notes: {r["notes"]}' for r in rifle.get('trigger_guards')],
                 'Possible Triggers': [f'{r["drawing_number"]}, Notes: {r["notes"]}' for r in rifle.get('triggers')],
                 'Possible Safeties': [f'{r["drawing_number"]}, Notes: {r["notes"]}' for r in rifle.get('safeties')],
-                'Possible Hammers': [f'{r["drawing_number"]}, Notes: {r["notes"]}' for r in rifle.get('hammers')]
+                'Possible Hammers': [f'{r["drawing_number"]}, Notes: {r["notes"]}' for r in rifle.get('hammers')],
+                'Possible followers': [f'{r["revision_number"]}, Notes: {r["notes"]}' for r in rifle.get('followers')]
             }
             form = RifleDateForm()
         else:
