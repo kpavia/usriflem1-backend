@@ -207,3 +207,11 @@ class Follower(models.Model):
 
     def __str__(self):
         return f'{self.maker} - {self.drawing_number}'
+
+
+class Video(models.Model):
+    link = models.CharField(max_length=100)
+    title = models.CharField(max_length=64)
+
+    def __str__(self):
+        return f'{self.title}'

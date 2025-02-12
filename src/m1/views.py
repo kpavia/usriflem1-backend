@@ -55,3 +55,7 @@ def index(request):
         form = RifleDateForm()
     context['form'] = form
     return render(request, 'm1/index.html', context)
+
+
+def education_view(request):
+    return render(request, 'm1/base_education.html', {})

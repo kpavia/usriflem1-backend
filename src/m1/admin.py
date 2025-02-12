@@ -12,7 +12,8 @@ from m1.models import (
     Cartouche,
     Srs,
     SRSVolume,
-    Follower
+    Follower,
+    Video
 )
 
 
@@ -29,3 +30,4 @@ admin.site.register(Cartouche)
 admin.site.register(Srs)
 admin.site.register(SRSVolume)
 admin.site.register(Follower)
+admin.site.register(Video)
