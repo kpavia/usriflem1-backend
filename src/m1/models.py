@@ -9,13 +9,7 @@ class SRSVolume(models.Model):
 
 
 class Srs(models.Model):
-    FIREARMS_CHOICES = {
-        'M1': 'M1 Garand',
-        'M1903': 'M1903 Springfield',
-
-    }
     serial_number = models.PositiveIntegerField()
-    firearm = models.CharField(max_length=32, choices=FIREARMS_CHOICES)
     model = models.CharField(max_length=20, null=True, blank=True)
     date = models.CharField(max_length=6)
     usage = models.CharField(max_length=64)
