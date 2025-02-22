@@ -1,5 +1,19 @@
 {% extends 'm1/base.html' %}
 {% load static %}
 {% block content %}
-    <p>Education videos</p>
+    <div class="row mt-5">
+        <h2 class="text-center mb-5">US Army Period Videos</h2>
+        <div class="col-12 col-md-6 text-center">
+            <h4>Principles of Operation (1943)</h4>
+            <div class="ratio ratio-16x9">
+                <iframe src="{{ principles_of_operation.link }}" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 text-center">
+            <h4>{{ us_army_cleanliness.title }}</h4>
+            <div class="ratio ratio-16x9">
+                <iframe src="{{ us_army_cleanliness.link }}" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
