@@ -10,6 +10,7 @@ class SRSVolume(models.Model):
 
 class Srs(models.Model):
     serial_number = models.PositiveIntegerField()
+    firearm = models.ForeignKey('m1.Firearm', on_delete=models.DO_NOTHING, null=True)
     model = models.CharField(max_length=20, null=True, blank=True)
     date = models.CharField(max_length=6)
     usage = models.CharField(max_length=64)
