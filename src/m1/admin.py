@@ -13,7 +13,8 @@ from m1.models import (
     Srs,
     SRSVolume,
     Follower,
-    Video
+    Video,
+    Firearm
 )
 
 
@@ -31,3 +32,4 @@ admin.site.register(Srs)
 admin.site.register(SRSVolume)
 admin.site.register(Follower)
 admin.site.register(Video)
+admin.site.register(Firearm)
