@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from m1.forms import RifleDateForm
-from m1.tasks import rifle_data
+from m1.tasks import rifle_data, get_videos
 from pprint import pprint
 
 
@@ -58,4 +58,6 @@ def index(request):
 
 
 def education_view(request):
-    return render(request, 'm1/base_education.html', {})
+    videos = get_videos()
+    pprint(videos.get('principles_of_operation').title)
+    return render(request, 'm1/base_education.html', videos)

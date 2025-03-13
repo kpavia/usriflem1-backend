@@ -1,7 +1,7 @@
 from m1.models import (
     Receiver, OpRod, Bolt, BulletGuide,
     TriggerHousing, TriggerGuard, Trigger,
-    Safety, Hammer, Cartouche, Follower
+    Safety, Hammer, Cartouche, Follower, Video
 )
 
 
@@ -171,3 +171,19 @@ def rifle_data(data):
         rifle['followers'] = get_followers(sn, maker)
         return rifle
     return {}
+
+
+def get_videos():
+    videos = Video.objects.all()
+    return {
+        'maintenance_one': videos.get(title='M1 Garand Firearm Maintenance: Part 1 Disassembly'),
+        'maintenance_two': videos.get(title='M1 Garand Firearm Maintenance: Part 2 Cleaning'),
+        'maintenance_three': videos.get(title='M1 Garand Firearm Maintenance: Part 3 Lubrication'),
+        'maintenance_four': videos.get(title='M1 Garand Firearm Maintenance: Part 4 Reassembly'),
+        'seventh_round': videos.get(title='The 7th Round Stoppage'),
+        'marksmanship_one': videos.get(title='Rifle Marksmanship with the M1 Rifle (1942), Part 1'),
+        'marksmanship_two': videos.get(title='Rifle Marksmanship with the M1 Rifle (1942), Part 2'),
+        'us_army_cleanliness': videos.get(title='US Army Rifle Cleanliness (1943)'),
+        'principles_of_operation': videos.get(title='Principles of Operation (1943)'),
+        'production_video': videos.get(title='Early M1 Rifle Production')
+    }
