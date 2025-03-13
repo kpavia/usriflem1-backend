@@ -184,6 +184,6 @@ def get_videos():
         'marksmanship_one': videos.get(title='Rifle Marksmanship with the M1 Rifle (1942), Part 1'),
         'marksmanship_two': videos.get(title='Rifle Marksmanship with the M1 Rifle (1942), Part 2'),
         'us_army_cleanliness': videos.get(title='US Army Rifle Cleanliness (1943)'),
-        'principles_of_operation': videos.get(title='M1 Garand - Principles of Operation (1943)'),
-        'production_video': videos.get(title='Early M1 Rifle Production at Springfield')
+        'principles_of_operation': videos.get(title='Principles of Operation (1943)'),
+        'production_video': videos.get(title='Early M1 Rifle Production')
     }
