@@ -185,5 +185,9 @@ def get_videos():
         'marksmanship_two': videos.get(title='Rifle Marksmanship with the M1 Rifle (1942), Part 2'),
         'us_army_cleanliness': videos.get(title='US Army Rifle Cleanliness (1943)'),
         'principles_of_operation': videos.get(title='Principles of Operation (1943)'),
-        'production_video': videos.get(title='Early M1 Rifle Production')
+        'production_video': videos.get(title='Early M1 Rifle Production'),
+        'navy_one': videos.get(title='Navy M1 Garand Conversions to 7.62mm'),
+        'navy_two': videos.get(title='Navy 7.62mm Conversion M1 Garand - Mk2 Mod1'),
+        'gas_trap': videos.get(title='Gas Trap M1 Garand'),
+        'c_r': videos.get(title='C&Rsenal: M1 Garand')
     }
