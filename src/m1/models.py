@@ -217,13 +217,12 @@ class Video(models.Model):
     title = models.CharField(max_length=64)
     category = models.CharField(
         max_length=30,
-        choices=CATEGORIES,
-        null=True,
-        blank=True
+        choices=CATEGORIES
     )
-    order = models.IntegerField(null=True, blank=True)
+    order = models.PositiveIntegerField()
 
     class Meta:
+        ordering = ['category', 'order']
         constraints = [
             models.UniqueConstraint(
                 fields=['category', 'order'],
