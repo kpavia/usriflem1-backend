@@ -205,8 +205,32 @@ class Follower(models.Model):
 
 
 class Video(models.Model):
+    PRODUCTION_HISTORY = 'production'
+    MILITARY = 'military'
+    MAINTENANCE = 'maintenance'
+    CATEGORIES = {
+        PRODUCTION_HISTORY: 'Production History',
+        MILITARY: 'Military Videos',
+        MAINTENANCE: 'Rifle Maintenance'
+    }
     link = models.CharField(max_length=100)
     title = models.CharField(max_length=64)
+    category = models.CharField(
+        max_length=30,
+        choices=CATEGORIES,
+        null=True,
+        blank=True
+    )
+    order = models.IntegerField(null=True, blank=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['category', 'order'],
+                name='unique_category_order'
+            )
+        ]
+
 
     def __str__(self):
         return f'{self.title}'
