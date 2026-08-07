@@ -52,10 +52,12 @@ INSTALLED_APPS = [
     'm1.apps.M1Config',
     'user.apps.UserConfig',
     'account.apps.AccountConfig',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

@@ -21,5 +21,6 @@ from m1.views import index, education_view
 urlpatterns = [
     path('', index, name='homepage'),
     path('admin/', admin.site.urls),
-    path('education/', education_view, name='education')
+    path('education/', education_view, name='education'),
+    path('api/', include('m1.urls'))
 ]

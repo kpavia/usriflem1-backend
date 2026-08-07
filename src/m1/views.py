@@ -1,6 +1,10 @@
 from django.shortcuts import render
+from django.db.models import (Case, When, Value, IntegerField)
 from m1.forms import RifleDateForm
 from m1.tasks import rifle_data, get_videos
+from m1.models import Video
+from m1.serializers import VideoSerializer
+from rest_framework import generics
 from pprint import pprint
 
 
@@ -61,3 +65,19 @@ def education_view(request):
     videos = get_videos()
     pprint(videos.get('principles_of_operation').title)
     return render(request, 'm1/base_education.html', videos)
+
+
+class VideoListView(generics.ListAPIView):
+    serializer_class = VideoSerializer
+
+    def get_queryset(self):
+        category_order = Case(
+            When(category=Video.MILITARY, then=Value(0)),
+            When(category=Video.MAINTENANCE, then=Value(1)),
+            When(category=Video.PRODUCTION_HISTORY, then=Value(2)),
+            output_field=IntegerField(),
+        )
+        return Video.objects.annotate(category_rank=category_order).order_by('category_rank', 'order')
+
+
+    
