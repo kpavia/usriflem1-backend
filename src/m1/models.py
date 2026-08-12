@@ -229,8 +229,7 @@ class Video(models.Model):
                 name='unique_category_order'
             )
         ]
-
-
+    
     def __str__(self):
         return f'{self.title}'
 
