@@ -3,9 +3,10 @@ from django.db.models import (Case, When, Value, IntegerField)
 from m1.forms import RifleDateForm
 from m1.tasks import rifle_data, get_videos
 from m1.models import Video
-from m1.serializers import VideoSerializer
-from rest_framework import generics
-from pprint import pprint
+from m1.serializers import (VideoSerializer, SerialNumberMakerSerializer)
+from rest_framework import (generics, status)
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 
 def index(request):
@@ -80,4 +81,13 @@ class VideoListView(generics.ListAPIView):
         return Video.objects.annotate(category_rank=category_order).order_by('category_rank', 'order')
 
 
-    
+class SerialNumberView(APIView):
+
+    def get(self, request):
+        serial_number = request.query_params.get('serial_number')
+        maker = request.query_params.get('maker')
+        serializer = SerialNumberMakerSerializer(data={'serial_number': serial_number, 'maker': maker})
+        if serializer.is_valid(raise_exception=True):
+            rifle = rifle_data(serializer.validated_data)
+            return Response(rifle, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_400_BAD_REQUEST)

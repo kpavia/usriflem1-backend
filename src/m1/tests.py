@@ -365,13 +365,23 @@ class VideoListAPITests(TestCase):
 
     def test_serializer_exposes_expected_fields_only(self):
         response = self.client.get(reverse('v1-videos'))
-        self.assertEqual(set(response.json()[0].keys()), {'link', 'title', 'category', 'order'})
+        self.assertEqual(
+            set(response.json()[0].keys()),
+            {'link', 'title', 'category', 'category_display', 'order'},
+        )
 
     def test_field_values_round_trip_exactly(self):
         response = self.client.get(reverse('v1-videos'))
         military_one = next(v for v in response.json() if v['title'] == 'Military 1')
         self.assertEqual(
-            military_one, {'link': 'm1', 'title': 'Military 1', 'category': Video.MILITARY, 'order': 1}
+            military_one,
+            {
+                'link': 'm1',
+                'title': 'Military 1',
+                'category': Video.MILITARY,
+                'category_display': 'Military Videos',
+                'order': 1,
+            },
         )
 
     def test_returns_empty_list_when_no_videos_exist(self):
