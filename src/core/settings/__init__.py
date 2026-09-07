@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'usriflem1.com',
     'www.usriflem1.com',
+    'api.usriflem1.com'
 ]
 AUTH_USER_MODEL = 'user.User'
 
